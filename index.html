@@ -1,0 +1,147 @@
+<!DOCTYPE html>
+<html lang="id">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CRITICAL SYSTEM FAILURE</title>
+    <style>
+        * { box-sizing: border-box; margin: 0; padding: 0; }
+        body {
+            background-color: #050505;
+            color: #00ff33;
+            font-family: 'Courier New', Courier, monospace;
+            padding: 20px;
+            overflow: hidden;
+            height: 100vh;
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+        #console {
+            text-align: left;
+            font-size: 14px;
+            line-height: 1.5;
+            white-space: pre-wrap;
+        }
+        .error-text { color: #ff3333; font-weight: bold; }
+        .warn-text { color: #ffcc00; }
+        .danger-zone {
+            border: 2px dashed #ff3333;
+            padding: 15px;
+            margin-top: 20px;
+            background: rgba(255, 51, 51, 0.1);
+            display: none;
+        }
+        #btn-cancel {
+            background: #ff3333;
+            color: white;
+            border: none;
+            padding: 12px 25px;
+            font-size: 16px;
+            font-weight: bold;
+            cursor: pointer;
+            margin-top: 15px;
+            width: 100%;
+            border-radius: 5px;
+        }
+        #credit {
+            text-align: center;
+            font-size: 11px;
+            color: #333;
+            letter-spacing: 2px;
+        }
+    </style>
+</head>
+<body>
+
+    <div id="console"></div>
+
+    <div class="danger-zone" id="alert-box">
+        <p class="error-text">[!!!] PROSES PENGHAPUSAN PARTISI SISTEM DIMULAI [!!!]</p>
+        <p>Semua data enkripsi internal sedang diunggah ke server luar.</p>
+        <button id="btn-cancel" onclick="triggerTrap()">BATALKAN PROSES</button>
+    </div>
+
+    <div id="credit">BYE AZMI</div>
+
+    <!-- Audio Efek Suara Beep Tersembunyi (Menggunakan API Audio Browser) -->
+    <script>
+        const consoleElem = document.getElementById('console');
+        const alertBox = document.getElementById('alert-box');
+        
+        // Log simulasi hacker terperinci
+        const logs = [
+            "[INFO] Menginisialisasi eksploitasi kernel...",
+            "[OK] Hak akses ROOT berhasil didapatkan.",
+            "[WARN] Mematikan Google Play Protect... BERHASIL.",
+            "[INFO] Mengakses penyimpanan internal (/storage/emulated/0/)...",
+            "[OK] Menemukan 1.432 foto, 243 video, dan 12 dokumen sensitif.",
+            "[INFO] Mengunduh database WhatsApp (msgstore.db.crypt14)...",
+            "[PROGRESS] Mengunggah data korban: 23%...",
+            "[PROGRESS] Mengunggah data korban: 56%...",
+            "[PROGRESS] Mengunggah data korban: 89%...",
+            "[OK] Transfer data selesai. Server: 194.26.112.8",
+            "[ERROR] Mendeteksi upaya interupsi pengguna!",
+            "[CRITICAL] MEMULAI FORMAT TOTAL SYSTEM HARDWARE..."
+        ];
+
+        let logIndex = 0;
+
+        // Fungsi menghasilkan suara bip hacker otomatis
+        function playBeep(freq, duration) {
+            try {
+                let context = new (window.AudioContext || window.webkitAudioContext)();
+                let osc = context.createOscillator();
+                osc.type = "sine";
+                osc.frequency.value = freq;
+                osc.connect(context.destination);
+                osc.start();
+                setTimeout(() => osc.stop(), duration);
+            } catch(e) {}
+        }
+
+        // Animasi teks mengetik log satu per satu
+        function printLogs() {
+            if (logIndex < logs.length) {
+                let line = logs[logIndex];
+                let p = document.createElement('p');
+                
+                if (line.includes('[ERROR]') || line.includes('[CRITICAL]')) {
+                    p.className = 'error-text';
+                    playBeep(150, 400);
+                } else if (line.includes('[WARN]')) {
+                    p.className = 'warn-text';
+                    playBeep(600, 150);
+                } else {
+                    playBeep(800, 50);
+                }
+
+                p.innerText = line;
+                consoleElem.appendChild(p);
+                logIndex++;
+                setTimeout(printLogs, Math.random() * 800 + 400); // Waktu jeda acak agar natural
+            } else {
+                // Munculkan kotak bahaya setelah log selesai
+                alertBox.style.display = "block";
+                playBeep(300, 1000);
+            }
+        }
+
+        // Mulai simulasi saat halaman dibuka
+        window.onload = () => {
+            setTimeout(printLogs, 1000);
+        };
+
+        // Jebakan ketika tombol "Batalkan" diklik
+        function triggerTrap() {
+            alert("SISTEM: Akses Ditolak! Tombol pembatalan telah dinonaktifkan.");
+            alert("Trojan.X500: Mengunci modul layar sentuh...");
+            alert("azmi bot: Mengirim lokasi GPS Anda ke server publik...");
+            alert("Prank selesai! Kena mental gak? 😂\n\n— bye azmi");
+            
+            // Mengarahkan ke halaman hitam kosong setelah selesai
+            document.body.innerHTML = "<h1 style='color:white; text-align:center; margin-top:40vh;'>👋 bye azmi</h1>";
+        }
+    </script>
+</body>
+</html>
